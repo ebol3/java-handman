@@ -4,6 +4,7 @@ package pl.edu.agh.hangman;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Words {
 
@@ -15,11 +16,14 @@ public class Words {
         try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
             String line = null;
             while ((line = reader.readLine()) != null) {
-                wordsList.add(line);
+                if (!line.contains(" ")) {
+                    wordsList.add(line.trim().toLowerCase(Locale.ROOT));
+                }
             }
         } catch (IOException x) {
             System.err.format("IOException: %s", x);
         }
+
         return wordsList;
     }
 
