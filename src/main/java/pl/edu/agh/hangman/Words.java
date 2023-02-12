@@ -1,21 +1,24 @@
 package pl.edu.agh.hangman;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
+
+import java.io.*;
+
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class Words {
 
-   public ArrayList<String> readFile() {
-       File file = null;
-       ArrayList<String> wordsList = null;
-       try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
+
+    private String fileName = "src/main/resources/slowa.txt";
+
+    public ArrayList<String> readFile() {
+        ArrayList<String> wordsList = new ArrayList<>();
+        File file = new File(fileName);
+        try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
             String line = null;
             while ((line = reader.readLine()) != null) {
-                wordsList.add(line);
+
                 if (!line.contains(" ")) {
                     wordsList.add(line.trim().toLowerCase(Locale.ROOT));
                 }
@@ -26,5 +29,7 @@ public class Words {
 
         return wordsList;
     }
+
 }
+
 
