@@ -1,5 +1,7 @@
 package pl.edu.agh.hangman;
 
+import pl.edu.agh.hangman.Words;
+
 public class Hangman {
 
     public static final String[] HANGMANPICS = new String[]{
@@ -55,5 +57,11 @@ public class Hangman {
     };
 
     public static void main(String[] args) {
+
+        Words w = new Words();
+
+        w.readFile();
+
+
     }
 }
