@@ -24,18 +24,25 @@ public class Hangman {
                 break;
             }
             if (wcr.checkWin(wordToGuess, hiddenWord)) {
+                ht.printHangmanStatus(counter);
+                wcr.printCharArray(hiddenWord);
                 System.out.println("YOU WIN! YOU GUESTED THE WORD: " + word.toUpperCase(Locale.ROOT) + " CORRECTLY!");
-                System.out.println(word);
                 break;
             }
             ht.printHangmanStatus(counter);
             wcr.printCharArray(hiddenWord);
-            char c = sc.nextLine().charAt(0);
+            System.out.print("Guess a letter: ");
+            char c = sc.hasNext() ? sc.next().trim().charAt(0) : 404;
+            if (c == 404) {
+                continue;
+            }
+
             if (!wcr.guestChar(c, wordToGuess)) {
                 counter++;
                 continue;
             }
             wcr.checkGuess(c, wordToGuess, hiddenWord);
         }
+        sc.close();
     }
 }
